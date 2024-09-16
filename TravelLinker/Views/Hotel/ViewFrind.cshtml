@@ -1,0 +1,259 @@
+﻿@model FriendProfileVM
+@{
+    ViewData["Title"] = $"{Model.EnterpriseName}";
+}
+
+<div class="profile-area ">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 rounded-bottom ">
+                <div class="card-profile  rounded-bottom  " style="height:600px;">
+
+                    <div class="img1 bg-light  "><img src="/Images/TL.png" /></div>
+
+                    <div class="offset-5 mt-5  here ">
+                        <h1 class="fw-bold text-light">@Model.EnterpriseName</h1>
+                    </div>
+                  
+                    <div class=" img2 offset-8">
+                        @if (Model.ProfileImage == null)
+                        {
+                            <a href="#">
+                                <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" />
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#">
+                                <img src="~/Hotels/@Model.Id/@Model.ProfileImage" />
+                            </a>
+                        }
+
+                    </div>
+
+
+
+
+
+
+
+                    @if (Model.Stars != null) // this hotel and have stars
+                    {
+                        <div class="offset-9 p-3   ">
+                            <!--loop-->
+                            <h5 class="start0">  <i class="bi bi-star-fill fs-4  text-light"></i></h5>
+                            @for (int i = 1; i < Model.Stars; i++)
+                            {
+                                <h5 class='@($"start{i}")'> <i class="bi bi-star-fill fs-4  text-light"></i></h5>
+                            }
+
+                            @if (Model.Stars.Value < 7)
+                            {
+                                @for (int i = Model.Stars.Value; i < 7; i++)
+                                {
+                                    <h5 class='@($"start{i}")'>  <i class="bi bi-star-fill fs-4  "></i></h5>
+                                }
+                            }
+
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-8 m-0   mt-2">
+                    <div class="card rounded-bottom" style="height:295px;">
+                        <div class="card-header">
+                            <div>
+
+                                <h2 class=" fw-bold text-light"> Description </h2>
+                            </div>
+                        </div>
+                        <div class="card-body text-white">
+                            @Model.Description
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 p-0 m-0  mt-2 ">
+                    <div class="card rounded-bottom" style="height:295px;">
+                        <div class="card-body">
+                            <div class="offset-1">
+
+                                <a href="#">
+                                    <h5> <i class="bi bi-geo-alt-fill"></i></h5>
+                                </a>
+                                <p class="offset-1 text-light">
+
+                                    @Model.Location <br />
+                                    <i class="bi bi-house-door-fill text-primary fs-5"></i>    <span class="fs-5 fw-bold">@Model.City</span>
+
+                                </p>
+
+                                <a href="#">  <h5><i class="bi bi-telephone-fill"></i></h5></a><p class="offset-1 text-light">Phone: @Model.PhoneNumber</p>
+                                <a href="#"><h5><i class="bi bi-envelope-fill"></i></h5></a><p class="offset-1 text-light">@Model.Email</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12   mt-2">
+                    <div class="card rounded-bottom">
+
+                        <div class="card-body text-white  ">
+                            @if(Model.Rooms.Count()!= 0)
+                            {
+                                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                                    <div class="carousel-inner ">
+                                        <div class="carousel-item active veiw-card">
+
+                                            <div class="row  ">
+
+
+                                                @foreach (var room in Model.Rooms.Take(3))
+                                                {
+                                                    <div class="col-lg-3  mt-3    ">
+                                                        <div class="card text-white bg-light mb-2 p-2" style="height:300px; width:250px;">
+                                                            <img src="~/Hotels/@Model.Id/@room.MainImage" class="card-img-top rounded-circle border border-white border-2 mt-2 offset-2  " style="height:100px;width:150px; " />
+                                                            <div class="card-body text-primary text-center ">
+                                                                <p class="card-title fw-bold  ">@room.Type </p>
+                                                                @if (room.OfferPrice == null)
+                                                                {
+                                                                    <p> <span class="text-warning m-2 fw-bold ">@room.Price.ToString("c")</span></p>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <p> <del class="  fw-bold fs-5">@room.Price.ToString("c")</del><span class="text-warning m-2 fw-bold fs-4">@room.OfferPrice.Value.ToString("c")</span></p>
+                                                                }
+                                                            </div>
+
+                                                            <div class="d-grid gap-2   ">
+                                                                <a asp-controller="Room" asp-action="Index" asp-route-Id="@room.Id" class="btn btn-outline-primary btn-dark btn-lg fw-bold    ">Details </a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                }
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                        
+                                       
+
+                                        @if (Model.Rooms.Count() > 3)
+                                        {
+                                            <div class="carousel-item veiw-card">
+
+                                                <div class="row  ">
+
+                                                    @foreach (var room in Model.Rooms.Skip(3).Take(3))
+                                                    {
+                                                        <div class="col-lg-3  mt-3    ">
+                                                            <div class="card text-white bg-light mb-2 p-2" style="height:300px; width:250px;">
+                                                                <img src="~/Hotels/@Model.Id/@room.MainImage" class="card-img-top rounded-circle border border-white border-2 mt-2 offset-2  " style="height:100px;width:150px; " />
+                                                                <div class="card-body text-primary text-center ">
+                                                                    <p class="card-title fw-bold  ">@room.Type </p>
+                                                                    @if (room.OfferPrice == null)
+                                                                    {
+                                                                        <p> <span class="text-warning m-2 fw-bold ">@room.Price.ToString("c")</span></p>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p> <del class="  fw-bold fs-5">@room.Price.ToString("c")</del><span class="text-warning m-2 fw-bold fs-4">@room.OfferPrice.Value.ToString("c")</span></p>
+                                                                    }
+                                                                </div>
+
+                                                                <div class="d-grid gap-2   ">
+                                                                    <a asp-controller="Room" asp-action="Index" asp-route-Id="@room.Id" class="btn btn-outline-primary btn-dark btn-lg fw-bold    ">Details </a>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    }
+
+
+                                                </div>
+
+
+                                            </div>
+                                        }
+                                        @if (Model.Rooms.Count() >=6)
+                                        {
+                                            <div class="carousel-item veiw-card">
+
+                                                <div class="row  ">
+
+                                                    @foreach (var room in Model.Rooms.Skip(6).Take(3))
+                                                    {
+                                                        <div class="col-lg-3  mt-3    ">
+                                                            <div class="card text-white bg-light mb-2 p-2" style="height:300px; width:250px;">
+                                                                <img src="~/Hotels/@Model.Id/@room.MainImage" class="card-img-top rounded-circle border border-white border-2 mt-2 offset-2  " style="height:100px;width:150px; " />
+                                                                <div class="card-body text-primary text-center ">
+                                                                    <p class="card-title fw-bold  ">@room.Type </p>
+                                                                    @if (room.OfferPrice == null)
+                                                                    {
+                                                                        <p> <span class="text-warning m-2 fw-bold ">@room.Price.ToString("c")</span></p>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p> <del class="  fw-bold fs-5">@room.Price.ToString("c")</del><span class="text-warning m-2 fw-bold fs-4">@room.OfferPrice.Value.ToString("c")</span></p>
+                                                                    }
+                                                                </div>
+
+                                                                <div class="d-grid gap-2   ">
+                                                                    <a asp-controller="Room" asp-action="Index" asp-route-Id="@room.Id" class="btn btn-outline-primary btn-dark btn-lg fw-bold    ">Details </a>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    }
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        }
+                                        
+                                    </div>
+                                    <button class="carousel-control-prev   mt-5" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next  mt-5" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            }
+
+                   
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

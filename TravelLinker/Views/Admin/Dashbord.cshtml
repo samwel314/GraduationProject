@@ -1,0 +1,251 @@
+﻿@model AdminDashbord
+@{
+    ViewData["Title"] = $"Manage System ";
+}
+
+<div class="navigation ">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="logo-apple"></ion-icon>
+                </span>
+
+            </a>
+        </li>
+
+        <li>
+            <a asp-controller="Admin" asp-action="Dashbord" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="home-outline"><i class="bi bi-house"></i></ion-icon>
+                </span>
+                <span class="title ">Home</span>
+            </a>
+        </li>
+
+        <li>
+
+            <a asp-area="Identity" asp-page="/Account/Register" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="bag-add-outline"><i class="bi bi-bag-plus"></i></ion-icon>
+                </span>
+                <span class="title">Register </span>
+            </a>
+        </li>
+
+
+
+
+
+
+
+    </ul>
+</div>
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+            <ion-icon name="menu-outline"><i class="bi bi-list text-light"></i></ion-icon>
+        </div>
+    </div>
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox row text-center align-content-center justify-content-center ">
+
+        <div class="card col-md-4 ">
+            <a class="link-underline link-underline-opacity-0 bobo " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div>
+                    <div class="numbers">@Model.Hotels.Count()</div>
+                    <div class="cardName">Our Hotels </div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="eye-outline"><i class="bi bi-eye"></i></ion-icon>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="card col-md-4">
+            <a class="link-underline link-underline-opacity-0 bobo " data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                <div>
+                    <div class="numbers">@Model.Companies.Count()</div>
+                    <div class="cardName">Our Companies</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="cart-outline"><i class="bi bi-cart3"></i></ion-icon>
+                </div>
+            </a>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class=" card container card-body site-blocks-table col-md-12 m-3">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+
+                        <th class="text-primary fw-bold fs-4">Email</th>
+                        <th class="text-primary fw-bold fs-4">Enterprise Name</th>
+                        <th class="text-primary fw-bold fs-4">Phone </th>
+                        <th class="text-primary fw-bold fs-4">City </th>
+                        <th class="text-primary fw-bold fs-4">Actions </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var hotel in Model.Hotels.OrderBy(c => c.City))
+                    {
+
+                        <tr>
+
+                            <td class="fw-bold text-white fs-5">@hotel.Email</td>
+                            <td class="fw-bold text-white fs-5">@hotel.EnterpriseName</td>
+                            <td class="fw-bold text-white fs-5">@hotel.PhoneNumber</td>
+                            <td class="fw-bold text-white fs-5">@hotel.City</td>
+
+                            <td>
+
+                                <a asp-action="ShowEnterprise" asp-route-Id="@hotel.Id" asp-route-Type="@StaticData.HotelType"><button class=" butto1 fw-bold  "> <i class="bi bi-hand-index-thumb fs-5"></i> View More </button></a>
+
+
+                                <button id="@hotel.Id" data-Id="@hotel.Id" data-lock="@(hotel.LockoutEnd >= DateTime.Now ? 1 : 0)" class="clock butto2  @(hotel.LockoutEnd >= DateTime.Now  == true ? "btn-success" : "btn-warning")   fs-5  fw-bold"><i class=' @(hotel.LockoutEnd >= DateTime.Now == true ? "bi bi-unlock" : "bi bi-lock-fill")'></i> @(hotel.LockoutEnd >= DateTime.Now == true ? " UnLock" : " Lock")</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div class="collapse active" id="collapseExample1">
+        <div class=" card container card-body site-blocks-table col-md-12 m-3">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+
+                        <th class="text-primary fw-bold fs-4">Email</th>
+                        <th class="text-primary fw-bold fs-4">Enterprise Name</th>
+                        <th class="text-primary fw-bold fs-4">Phone </th>
+                        <th class="text-primary fw-bold fs-4">City </th>
+                        <th class="text-primary fw-bold fs-4">Actions </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var company in Model.Companies.OrderBy(c => c.City))
+                    {
+
+                        <tr>
+
+                            <td class="fw-bold text-white fs-5">@company.Email</td>
+                            <td class="fw-bold text-white fs-5">@company.EnterpriseName</td>
+                            <td class="fw-bold text-white fs-5">@company.PhoneNumber</td>
+                            <td class="fw-bold text-white fs-5">@company.City</td>
+
+                            <td>
+
+                                <a asp-controller="Admin" asp-action="ShowEnterprise" asp-route-Id="@company.Id" asp-route-Type="@StaticData.CompanyType"><button class=" butto1 fw-bold  "> <i class="bi bi-hand-index-thumb fs-5"></i> View More </button></a>
+                                <button id="@company.Id" data-Id="@company.Id" data-lock="@(company.LockoutEnd >= DateTime.Now ? 1 : 0)" class="clock butto2  @(company.LockoutEnd >= DateTime.Now  == true ? "btn-success" : "btn-warning")   fs-5  fw-bold"><i class=' @(company.LockoutEnd >= DateTime.Now == true ? "bi bi-unlock" : "bi bi-lock-fill")'></i> @(company.LockoutEnd >= DateTime.Now == true ? " UnLock" : " Lock")</button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $('.clock').on('click', function () {
+            var a = $(this);
+            var Id = a.data('id');
+            var lockvalue = a.data('lock');   // 1
+            if (lockvalue == 1)
+                lockvalue = 0;
+            else
+                lockvalue = 1;
+
+            a.data('lock', lockvalue);
+
+
+            $.ajax({
+                url: '/Admin/LockUnLock/' + Id,
+                type: 'POST',
+                success: function () {
+                    //"bi bi-unlock" : "bi bi-lock-fill"
+                    if (lockvalue == 1) {
+                        $('#' + Id).empty().html('<i  class="bi bi-unlock"></i> UnLock');;
+                        $('#' + Id).removeClass('btn-warning').addClass('btn-success');
+                    }
+                    else {
+                        $('#' + Id).empty().html('<i class="bi bi-lock-fill"></i> Lock');
+                        $('#' + Id).removeClass('btn-success').addClass('btn-warning');
+                    }
+
+                }
+            });
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all card links
+        const cardLinks = document.querySelectorAll('.card .bobo');
+
+        // Add click event listener to each card link
+        cardLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                // Prevent the default action of the link
+                event.preventDefault();
+
+                // Get the target collapse section ID from the href attribute
+                const targetId = this.getAttribute('href');
+
+                // Get all collapse sections except the target one
+                const collapses = document.querySelectorAll('.collapse:not(' + targetId + ')');
+
+                // Collapse all other sections
+                collapses.forEach(collapse => {
+                    collapse.classList.remove('show');
+                });
+
+                // Toggle the target collapse section
+                const targetCollapse = document.querySelector(targetId);
+                targetCollapse.classList.toggle('show');
+
+                // Remove 'active' class from all card links
+                cardLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked card link
+                this.classList.add('active');
+            });
+        });
+    });
+</script>

@@ -1,0 +1,152 @@
+﻿@model UpDateCreateRoomViewModel
+
+@{
+    ViewData["Title"] = $"Update ROOM {Model.Number}";
+}
+<div class="container p-2">
+    <form method="post" enctype="multipart/form-data">
+
+        <input hidden asp-for="HotelId" />
+        <input hidden asp-for="RoomId" />
+        <div class="card border-gray">
+            <h2 class="form-title text-center text-white p-2 mb-2 bg-primary ">Update Room Numebr @Model.Number <small> Floor Number  @Model.FloorNumber</small> </h2>
+            <div asp-validation-summary="All" class="text-warning fw-bold" role="alert"></div>
+
+            <fieldset>
+                <div class="row  ps-2">
+                    <div class="col-6 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Room Number</label>
+                                    <input asp-for="Number" class="form-control fw-bold border border-dark border-2 " placeholder="Room Number">
+                                    <span asp-validation-for="Number" class="fw-bold text-warning"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Price Per Night</label>
+                                    <input asp-for="PricePerNight" class="form-control fw-bold border border-dark border-2" placeholder="Price Per Night">
+                                    <span asp-validation-for="PricePerNight" class="fw-bold text-warning"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Floor Number</label>
+                                    <input asp-for="FloorNumber" class="form-control fw-bold border border-dark border-2" placeholder="Floor Number">
+                                    <span asp-validation-for="FloorNumber" class="fw-bold text-warning"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Price Per Week</label>
+                                    <input asp-for="PricePerWeek" class="form-control fw-bold border border-dark border-2" placeholder="Price Per Week">
+                                    <span asp-validation-for="PricePerWeek" class="fw-bold text-warning"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Beds Number</label>
+                                    <input asp-for="BedsNumber" class="form-control fw-bold border border-dark border-2" placeholder="Beds Number ">
+                                    <span asp-validation-for="BedsNumber" class="fw-bold text-warning"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-1">
+                                    <label class="fw-bold fs-6 text-white">Price Per month</label>
+                                    <input asp-for="PricePerMonth" class="form-control fw-bold border border-dark border-2" placeholder="Price Per month">
+                                    <span asp-validation-for="PricePerMonth" class="fw-bold text-warning"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group mb-1 ">
+                            <label asp-for="Type" class="form-label fw-bold mt-4 text-white fs-6">Type Room</label>
+                            <select asp-for="Type" asp-items="@StaticData.LoadRoomTypes()" class="form-select text-light fs-6 btn btn-secondary">
+                                <option selected disabled>Select room Type </option>
+
+                            </select>
+                            <span asp-validation-for="Type" class="fw-bold text-warning"></span>
+
+                        </div>
+                        <div class="form-group mb-1 ">
+                            <label asp-for="Features" class="form-label fw-bold mt-4 text-white fs-6">Features Room</label>
+                            <select multiple asp-for="Features" asp-items="@StaticData.LoadRoomFeatures()" class="form-select btn btn-secondary text-light fs-6" id="exampleSelect2">
+                                <option selected disabled>Select room fUTE</option>
+                            </select>
+                            <span asp-validation-for="Features" class="fw-bold text-warning"></span>
+
+                        </div>
+                        <div class="form-group mb-0 w-75 ">
+                            <label asp-for="Images" class="form-label fw-bold mt-2 text-white fs-6 ">Add Photos</label>
+                            <input asp-for="Images" class="form-control btn btn-outline-secondary" type="file" multiple>
+                            @*                           <span asp-validation-for="Images" class="fw-bold text-warning"></span>
+                            *@
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <!-- Mina Code -->
+                            <legend class="fw-bold text-center  text-white">Uploaded Photos</legend>
+                            @for (int i = 0; i < Model.ImagesUrls?.Count; i++)
+                            {
+                                <div class="uploaded-files ">
+                                    <div class="  photos justify-content-center align-items-center flex-column">
+                                        <div class="text-center mb-1 ">
+                                            <input hidden asp-for="@Model.ImagesUrls[i])" />
+                                            <img src="~/Hotels/@Model.HotelId/@Model.ImagesUrls[i]" alt="Your Image" width="250" height="150">
+                                        </div>
+                                    </div>
+                                    <!-- Delete Button -->
+                                </div>
+                            }
+                        </fieldset>
+
+                    </div>
+
+
+                </div>
+            </fieldset>
+            <div class="container p-4 ">
+                <div class="row justify-content-start offset-1 ">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-outline-primary btn-light w-100 rounded-pill fs-4 text-uppercase border border-primary">Update  </button>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="offset-10  ">
+                <a asp-controller="Hotel" asp-action="Show" class="btn btn-outline-primary  text-light  mb-2 fw-semibold btn-sm  fs-5 text-uppercase border border-primary ">
+                    <small>Back to home</small>
+                </a>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

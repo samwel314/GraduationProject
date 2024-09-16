@@ -1,0 +1,259 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <!-- End Header -->
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <h1>Welcome in Travel Linker</h1>
+            <h2>If you want to succeed, The competition is the first thing you should take into consideration</h2>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+    </section><!-- End Hero -->
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about hero ">
+        <div class="container hero-container mt-lg-5" data-aos="fade-up">
+
+            <div class="section-title mt-5">
+                <h2 class="text-light">About Us</h2>
+            </div>
+
+            <div class="row content text-light fw-bold fs-5">
+                <div class="col-lg-6 ">
+                    <p>
+                        Our website is characterized by adding companies to display their
+                        content to the user for the purpose of promoting them.
+                        We also allow these companies to move competitively with
+                        other similar companies in the same field. This helps increase
+                        the percentage of profits, and also saves each company
+                        the costs of creating its own website.
+                    </p>
+
+
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+
+                    Various companies participate in our website, including:
+
+                    <ul>
+                        <li><i class="bi bi-check-all fw-bold fs-4"></i> Hotels</li>
+                        <li><i class="bi bi-check-all fw-bold fs-4"></i> Transportation companies</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg text-white fw-bold fs-5 hero">
+        <div class="container hero-container">
+
+            <div class="section-title">
+                <h2 class="text-white fw-bold ">Services</h2>
+                <h4 class="title fs-4 text-white">As a Hotel, we offer you the following services:</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-calendar4-week text-light fw-bold"></i></div>
+                    <h4 class="title fs-5">Add New Room</h4>
+                    <p class="description fs-5">As a hotel, You can add all the rooms available for reservation to display them to the user</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-card-checklist text-light fw-bold"></i></div>
+                    <h4 class="title fs-5">Manage Room</h4>
+                    <p class="description fs-5">As a hotel, You can control the addition, deletion, or modification of any added room, and we also allow you to make discounts on them</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi-brightness-high text-light fw-bold"></i></div>
+                    <h4 class="title fs-5">Show Room</h4>
+                    <p class="description fs-5">As a hotel, We show you all the rooms that you added in the form of a card with the price and all the details</p>
+                </div>
+                <div class="section-title">
+                    <h4 class="title fs-4">As a Transportation company, we offer you the following services:</h4>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-calendar4-week text-light fw-bold "></i></div>
+                    <h4 class="title fs-5">Add New Trip</h4>
+                    <p class="description fs-5">As a Transportation company, You can add all the trips available for reservation to display them to the user</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-card-checklist text-light fw-bold"></i></div>
+                    <h4 class="title fs-5">Manage Trip</h4>
+                    <p class="description fs-5">As a Transportation company, You can control the addition, deletion, or modification of any added trip, and we also allow you to make discounts on them</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi-brightness-high text-light fw-bold"></i></div>
+                    <h4 class="title fs-5">Show Trip</h4>
+                    <p class="description fs-5">As a Transportation company, We show you all the trips you have added in the form of a card with the price and all the details</p>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+    <section class="hero">
+        <div class="hero-container text-center mt-5 p-5 m-5 ">
+            <h1 class="text-white mt-5 ">learn more</h1>
+            <h2 class="text-light">
+                You can now take a quick tour of our website to learn more about its features
+                We will show you a simple model that will help you understand the use of our website in an easy and simple way if you are a hotel or transportation company
+            </h2>
+            <div class="row container fw-bold fs-4 ">
+                <div class="col-md-6 p-3">
+                    <a asp-controller="GetStartHotel" asp-action="Index" class="border border-4 border-primary w-50 rounded-5 btn-dark btn btn-outline-primary text-light fw-bold  fs-4">Let's go as a hotel</a>
+                </div>
+                <div class="col-md-6 p-3">
+                    <a asp-controller="GetStartComapny" asp-action="Index" class="border border-4 border-primary w-50 rounded-5 btn-dark btn btn-outline-primary text-light fw-bold fs-4">Let's go as a company</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team hero">
+        <div class=" container hero-container">
+            <div class="section-title text-light ">
+                <h2 class="text-light fw-bold ">Comment</h2>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6 rounded-5">
+                    <div class="member d-flex align-items-start bg-light ">
+                        <div class="pic"><img src="/Images/WhatsApp Image 2024-02-01 at 15.03.29_c8c5d32f.jpg" class="img-fluid rounded-circle border border-3  " alt=""></div>
+                        <div class="member-info">
+                            <h4>Walter White</h4>
+
+                            <p>Explicabo voluptatem mollitia et repellat</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="member d-flex align-items-start bg-light">
+                        <div class="pic "><img src="/Images/WhatsApp Image 2024-02-01 at 15.03.29_c8c5d32f.jpg" class="img-fluid rounded-circle " alt=""></div>
+                        <div class="member-info">
+                            <h4>Sarah Jhonson</h4>
+
+                            <p>Aut maiores voluptates amet et quis</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="member d-flex align-items-start bg-light">
+                        <div class="pic"><img src="/Images/WhatsApp Image 2024-02-01 at 15.03.29_c8c5d32f.jpg" class="img-fluid rounded-circle border border-3" alt=""></div>
+                        <div class="member-info mar">
+                            <h4>William Anderson</h4>
+
+                            <p>Quisquam facilis cum velit laborum corrupti</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="member d-flex align-items-start bg-light">
+                        <div class="pic"><img src="/Images/WhatsApp Image 2024-02-01 at 15.03.29_c8c5d32f.jpg" class="img-fluid rounded-circle border border-3" alt=""></div>
+                        <div class="member-info">
+                            <h4>Amanda Jepson</h4>
+
+                            <p>Dolorum tempora officiis odit laborum officiis</p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact text-light hero">
+        <div class="container hero-container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2 class="text-light">Contact</h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="address ">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4 class="text-light">Location:</h4>
+                            <p class="text-light">A108 Adam Street, New York, NY 535022</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4 class="text-light">Email:</h4>
+                            <p class="text-light">info@example.com</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4 class="text-light">Call:</h4>
+                            <p class="text-light">+1 5589 55488 55s</p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form  ">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name" class="fw-bold fs-5 fst-italic">Your Name</label>
+                                <input type="text" name="name" class="form-control bg-light" id="name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name" class="fw-bold fs-5 fst-italic">Your Email</label>
+                                <input type="email" class="form-control bg-light" name="email" id="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="fw-bold fs-5 fst-italic">Subject</label>
+                            <input type="text" class="form-control bg-light" name="subject" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="fw-bold fs-5 fst-italic">Message</label>
+                            <textarea class="form-control bg-light" name="message" rows="10" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Section -->
+
+
+
+
+
+
+
+
+
+
+
+</body>

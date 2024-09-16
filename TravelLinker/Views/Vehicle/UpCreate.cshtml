@@ -1,0 +1,109 @@
+﻿@model UpCreateVehicleVM
+
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Create New Vehicle" : $"Update {Model.Type} Vehicle";
+    var btn = Model.Id == 0 ? "Create " : "Update " ; 
+
+}
+
+
+<div class="container p-2 w-50">
+     <form method="post" enctype="multipart/form-data">
+         <input  hidden asp-for="Id"/>
+        <input hidden asp-for="CompanyId" />
+       <input  hidden asp-for="ImageUrl"/>
+    <div class="card rounded-top-5 rounded-5">
+        <div class="card-header py-2 text-center text-white bg-primary rounded-top-5">
+                <h3 class="m-auto fw-bold  fst-italic ">@ViewData["Title"] </h3>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-warning fw-bold" role="alert"></div>
+
+        <div class="row  ps-3 pe-3">
+            <div class="col-12 ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group mb-2 ">
+                            <label asp-for="Type" class="form-label   fw-bold text-white "> Type</label>
+                            <select asp-for="Type" asp-items="@StaticData.LoadVehicleTypes()" class="form-control fw-bold border border-dark border-2 rounded-5 ">
+                                <option selected disabled> Select Your  Vehicle Type  </option>
+                            </select>
+                            <span asp-validation-for="Type" class="fw-bold text-warning"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group mb-2">
+                            <label asp-for="LicenseNumber" class="form-label   fw-bold text-white "> License Plate Number</label>
+                            <input asp-for="LicenseNumber" class="form-control fw-bold border border-dark border-2 rounded-5" />
+                            <span asp-validation-for="LicenseNumber" class="fw-bold text-warning"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group mb-2 ">
+                            <label asp-for="Capacity" class="form-label   fw-bold text-white "> Capacity</label>
+                            <select asp-for="Capacity" asp-items="@StaticData.LoadVehicleCapacities()" class="form-control fw-bold border border-dark border-2 rounded-5 ">
+                                <option selected disabled> Select Capacity  For  Your Vehicle </option>
+                            </select>
+                            <span asp-validation-for="Capacity" class="fw-bold text-warning"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group mb-2 ">
+                                <label asp-for="Features" class="form-label   fw-bold text-white ">Vehicle  Features</label>
+                            <select multiple asp-for="Features" asp-items="@StaticData.LoadBusTripFeatures()" class="form-control fw-bold border border-dark border-2  rounded-5">
+                                <option selected disabled> Select Features  For  Your Vehicle </option>
+                            </select>
+                            <span asp-validation-for="Features" class="fw-bold text-warning"></span>
+
+                        </div>
+
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-2 ">
+                                <label asp-for="Image" class="form-label   fw-bold text-white ">Vehicle  Features</label>
+                                <input type="file" asp-for="Image" class="form-control btn btn-outline-secondary" />
+                                <span asp-validation-for="Image" class="fw-bold text-warning"></span>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="container  ">
+            <div class="row justify-content-start offset-1  ">
+                <div class="col-md-4 d-grid gap-2 w-50 offset-2">
+                    <button type="submit" class="btn btn-outline-primary btn-dark  rounded-pill fs-4 text-uppercase  border border-primary">@btn</button>
+                </div>
+        
+                <div class=" col d-grid gap-2 d-md-flex justify-content-md-end ">
+                        <a asp-controller="Vehicle" asp-action="DisplayAll" class="btn btn-outline-primary  text-white   fw-semibold btn-sm mb-1 fs-5 text-uppercase border fw-bold border-primary rounded-pill">
+                        <small>Back to home</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+@section scripts {
+    <partial name="_validationscriptspartial" />
+}

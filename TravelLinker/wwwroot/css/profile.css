@@ -1,0 +1,181 @@
+﻿
+.profile-area {
+    padding: 60px 0;
+}
+
+.card-profile {
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.img1 img {
+    height: 350px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 100%;
+}
+
+.img2 img {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 7px solid #fff;
+    margin-top: -200px;
+}
+
+.img-icon1 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    margin-top: -40px;
+}
+
+.img-icon2 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    margin-top: -20px;
+    margin-left: 50px;
+}
+.start0 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: -70px;
+    margin-top: -100px;
+}
+
+.start1 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: -50px;
+    margin-top: -10px;
+}
+
+.start2 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.start3 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: 60px;
+    margin-top: -50px;
+}
+
+.start4 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: 130px;
+    margin-top: -70px;
+}
+
+.start5 i {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: 200px;
+    margin-top: -90px;
+}
+
+.start6 i {
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin-left: 225px;
+    margin-top: -115px;
+}
+
+.here h1 {
+    font-family: "Sofia", sans-serif;
+}
+
+
+.comment {
+    height: 120px;
+}
+
+.profile-email {
+    margin-top: -10px;
+}
+
+.profile-slide {
+    height: 400px;
+}
+
+.veiw-card {
+    left: 15%;
+}
+
+.rate {
+    border-color: #fff;
+    border-radius: 10px 10px;
+    border: 3px solid #fff;
+    background: var(--white);
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 5px 20px;
+    width: 80px;
+    display: flex;
+    height: 50px;
+    align-content: center;
+    justify-content: center;
+    margin-left: -18px;
+}
+
+.card-body .review {
+    margin-top: -20px;
+}

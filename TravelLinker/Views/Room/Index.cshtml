@@ -1,0 +1,133 @@
+﻿@model Room 
+@inject UserManager<ApplicationUser> UserManager
+@{
+ 
+    var count = Model.RoomImages.Count() ; 
+}
+<div class="card shadow border-0 mt-2  container  p-0 ">
+    <div class="card-header bg-dark bg-gradient text-light py-1 ">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <a asp-controller="Hotel" asp-action="ViewFrind" asp-route-Id="@Model.HotelId" class="link-underline link-underline-opacity-0 "> <h3 class="text-light text-uppercase fw-bold fs-4 fst-italic"><i class="bi bi-person-circle text-primary fw-bold fs-3"></i> View Woner </h3></a>                <h4 class="text-light text-uppercase fw-bold fs-5 fst-italic">Room Number @Model.Number</h4>
+                <p class="text-light fw-semibold mb-0 fw-bold fs-5 fst-italic">FloorNumber @Model.FloorNumber</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body bg-primary">
+        <div class="py-0">
+            <div class="row">
+                <div class="col-6 col-md-2 offset-lg-1 pb-1">
+                    <a asp-controller="Hotel" asp-action="Index" class="btn btn-outline-secondary btn-dark text-white mb-5 fw-semibold btn-sm ">
+                        <small>Back to home</small>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-11 col-lg-3 offset-lg-1 text-center mb-3">
+
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                         @if (count == 2)
+                            {
+                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            }
+                            else if (count == 3 )
+                            {
+                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+                            }
+                        </div>
+                        <div class="carousel-inner">
+                            @{
+                                var sty = "active" ; 
+                            }
+                            @foreach (var imaeg in Model.RoomImages)
+                             {
+
+                                <div class="carousel-item @sty border border-white border-2">
+                                    <img src="~/Hotels/@Model.HotelId/@imaeg.ImageUrl" class="d-block" width="300" height="300" alt="...">
+                                </div>
+                                sty = "border";
+                             }
+                         
+                 
+                        </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>             
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 offset-lg-1 ">
+                    <div class="container">
+                        <table class="table table-dark  ">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th scope="col" class="text-light fw-bold ">Type</th>
+                                    <th scope="col" class="text-light fw-bold ">Beds Number</th>
+                                    <th scope="col" class="text-light fw-bold ">Price Per Night</th>
+                                    <th scope="col" class="text-light fw-bold ">Price Per Week</th>
+                                    <th scope="col" class="text-light fw-bold ">Price Per Month </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Fetch and display room data here -->
+                                <tr>
+                                    <th class="text-primary fs-5">@Model.Type</th>
+                                    <td class="text-primary fs-5 text-center">@Model.BedsNumber</td>
+                                    <td class="text-primary fs-5 text-center">@Model.PricePerNight.ToString("c")</td>
+                                    <td class="text-primary fs-5 text-center">@Model.PricePerWeek.ToString("c")</td>
+                                    <td class="text-primary fs-5 text-center">@Model.PricePerMonth.ToString("c")</td>
+                                </tr>
+                                <!-- End of room data -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 pb-2 p-2 ">
+                            <p>
+                                <button class="btn btn-outline-secondary btn-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                    Show  Room Features
+                                </button>
+                            </p>
+                            <div style="min-height: 120px;">
+                                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                    <div class="card card-body bg-dark text-white " style="width: 300px;">
+                                        <ul>
+                                            @foreach (var Feature in Model.RoomFeatures)
+                                            {
+                                                <li >@Feature.FeatureName</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.RoomOffer!= null )
+                    {
+                        <div class="col-md-5 offset-6 text-center">
+                            <input value="@Model.RoomOffer.OfferPrice.ToString("c")  @Model.RoomOffer.OfferDescription" type="text" disabled class="form-control text-primary text-center fw-bold bg-light w-100 col-8 " id="fromTime" />
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

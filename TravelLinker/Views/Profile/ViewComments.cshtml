@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ViewCommentDTO>
+
+@{
+    ViewData["Title"] = "Show Your  Comments  ";
+
+}
+<div class="container">
+    <div class="row  mt-5">
+        <h1 class="text-center text-light">People have said </h1>
+        @foreach (var Comment in Model)
+        {
+            <div class="col-md-6   mt-2">
+                <div class="card  rounded rounded-5 rounded-bottom-5">
+
+                    <div class="card-body text-white   ">
+                        <div class=" comment mt-2 ">
+                            <div class="row">
+                                <h4 class="text-light fw-bold col-6"> <i class="bi bi-person-circle text-primary fs-2 m-2"></i> @Comment.UserName </h4>
+                                <p class="text-black  fw-bold profile-email col-4 mt-3"><i class="bi bi-envelope-at-fill text-black"></i>   @Comment.Email</p>
+                            </div>
+                            <p class="text-white fw-bold profile-email">  <i class="bi bi-arrow-return-right  text-black fw-bold fs-3 p-2"></i>  @Comment.Content</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

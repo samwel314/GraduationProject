@@ -1,0 +1,163 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="navigation ">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="logo-apple"></ion-icon>
+                </span>
+
+            </a>
+        </li>
+
+        <li>
+            <a asp-action="Dashbord" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="home-outline"><i class="bi bi-house"></i></ion-icon>
+                </span>
+                <span class="title ">Home</span>
+            </a>
+        </li>
+
+        <li>
+
+            <a asp-area="Identity" asp-page="/Account/Register" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="bag-add-outline"><i class="bi bi-bag-plus"></i></ion-icon>
+                </span>
+                <span class="title">Register </span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="bag-add-outline"><i class="bi bi-bag-plus"></i></ion-icon>
+                </span>
+                <span class="title">Top Five Hotel </span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="bag-add-outline"><i class="bi bi-bag-plus"></i></ion-icon>
+                </span> <span class="title">Top Five Company </span>
+            </a>
+        </li>
+
+
+
+
+
+
+    </ul>
+</div>
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+            <ion-icon name="menu-outline"><i class="bi bi-list text-light"></i></ion-icon>
+        </div>
+    </div>
+    <!-- ======================= Cards ================== -->
+
+    <div class="container">
+        <div class="row offset-1   " style="width:1500px;">
+            <div class="col-md-7 mb-3 my-4 rateee">
+                <div class="card mb-2 my-1 w-100 rateee">
+                    <div class="card-header py-2 text-center text-white bg-primary  " style="height:75px;">
+                        <h3 class="m-auto fw-bold  fst-italic text-center mt-2 ">Creata New Account For Your Enterprise </h3>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-warning fw-bold" role="alert"></div>
+
+                    <div class="card-body">
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+                            <div class="row form-outline ">
+
+                                <div class="col-md-6 p-2 ">
+                                    <div class="form-outline mb-0">
+                                        <input asp-for="Input.Email" class="form-control fw-bold border border-dark border-2 py-2" placeholder="Email" />
+                                        <span asp-validation-for="Input.Email" class="text-warning fw-bold"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 p-2">
+                                    <div class="form-outline mb-1">
+                                        <input asp-for="Input.PhoneNumber" class="form-control fw-bold border border-dark border-2 py-2" placeholder="Phone" />
+                                        <span asp-validation-for="Input.PhoneNumber" class="text-warning fw-bold"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 p-2">
+
+                                    <div class="form-outline mb-1">
+                                        <input asp-for="Input.Password" class="form-control fw-bold border border-dark border-2 py-2" placeholder="Password" />
+                                        <span asp-validation-for="Input.Password" class="text-warning fw-bold"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 p-2">
+                                    <div class="form-outline mb-1">
+                                        <input asp-for="Input.EnterpriseName" class="form-control fw-bold border border-dark border-2 py-2" placeholder=" Enterprise Name" />
+                                        <span asp-validation-for="Input.EnterpriseName" class="text-warning fw-bold"></span>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 p-2">
+
+                                    <div class="form-outline mb-1">
+                                        <input asp-for="Input.ConfirmPassword" class="form-control fw-bold border border-dark border-2 py-2" placeholder="Confirm Password" />
+                                        <span asp-validation-for="Input.ConfirmPassword" class="text-warning fw-bold"></span>
+
+                                    </div>
+
+                                </div>
+                                <div class="col p-2">
+
+                                    <div class="form-group mb-1 ">
+                                        <select asp-for="Input.City" asp-items="@Model.Input.Citys" class="form-control fw-bold border border-dark border-2">
+                                            <option disabled selected>Select  Enterprise City</option>
+                                        </select>
+                                        <span asp-validation-for="Input.City" class="text-warning fw-bold"></span>
+
+                                    </div>
+
+                                </div>
+                                <div class="">
+                                    <div class="form-group mb-1 ">
+                                        <select asp-for="Input.EnterpriseType" asp-items="@Model.Input.TypesOfEnterprise" class="form-control fw-bold border border-dark border-2">
+                                            <option disabled selected>Select  Enterprise Type</option>
+                                        </select>
+                                        <span asp-validation-for="Input.EnterpriseType" class="text-warning fw-bold"></span>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="text-center mt-3  ">
+                                <button class="btn btn-outline-primary btn-dark btn-lg w-50 fw-bold">Add New Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

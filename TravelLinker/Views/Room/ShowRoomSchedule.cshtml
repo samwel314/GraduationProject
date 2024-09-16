@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ShowRoomSchedule> 
+
+<div class="container">
+<div class=" card  card-body site-blocks-table   m-3">
+    <div class="card-header bg-primary text-white text-center py-3">
+        <h3 class="fw-bold  fst-italic display-6 ">You Have @Model.Count() Scheduel In This Room</h3>
+    </div>
+    <table class="table table-hover ">
+        <thead>
+            <tr >
+
+                <th class="text-primary fw-bold  fs-4">ScheduelNumber</th>
+                <th class="text-primary fw-bold fs-4 text-center offset-2"><i class="bi bi-person-walking text-light"></i> checkin</th>
+                <th class="text-primary fw-bold fs-4 text-center">checkout <i class="bi bi-person-walking text-light"></i></th>
+                <th class="text-primary fw-bold fs-4"> Booking </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Sch in Model)
+            {
+                    <tr>
+
+                        <td class="text-primary fs-5 " style="width:80px;">     <input value="@Sch.Id" type="text" disabled class="form-control text-center text-primary fw-bold bg-light  "></td>
+                        <td class="text-primary fs-5 " style="width:250px;">     <input value="@Sch.CheckIn" type="text" disabled class="form-control text-center text-light fw-bold bg-primary w-100 "></td>
+                        <td class="text-primary fs-5 " style="width:250px;">     <input value="@Sch.CheckOut" type="text" disabled class="form-control text-center text-light fw-bold bg-primary w-100 "></td>
+
+
+
+
+                        <td>
+
+                            <a asp-action="ShowTicket" asp-route-Tid="@Sch.TrId"><button class=" butto1 fw-bold  "> <i class="bi bi-ticket-perforated-fill"></i> View Booking  </button></a>
+                        </td>
+
+                    </tr>
+                    
+            }
+           
+    
+            
+
+
+
+
+        </tbody>
+
+    </table>
+        <div class="offset-1  ">
+            <a asp-controller="Hotel" asp-action="Show" class="btn btn-outline-primary  text-white  mb-2 fw-semibold btn-sm  fs-5 text-uppercase border border-primary fw-bold ">
+                <small>Back</small>
+            </a>
+        </div>
+
+
+</div>
+
+
+</div>

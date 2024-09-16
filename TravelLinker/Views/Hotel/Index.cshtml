@@ -1,0 +1,56 @@
+﻿@model List<OverViewRoomViewModel>
+
+<div class="container-fluid  ">
+    <div class="row">
+
+        @if (Model.Count == 0)
+        {
+            <div class="alert alert-light text-center container  rounded-pill mt-5  w-75 " role="alert">
+                <p class="fs-1 fw-bold fst-italic text-dark"><i class="bi bi-info-circle-fill"></i>  You Not have Any Room Yet !</p> <br />
+                <a asp-controller="Room" asp-action="Create"><button class="btn btn-outline-primary fs-4 fw-bold border-3"><i class="bi bi-plus-square"></i> Create Now</button> </a>
+            </div>
+
+        }
+        else
+        {
+
+            <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4 align-items-start">
+                <div class="container">
+                    <div class="row">
+                        @foreach (var room in Model)
+                        {
+                            <div class="col-lg-3 p-2 mt-3">
+                                <div class="card text-white bg-light mb-2 p-2">
+                                    <img src="~/Hotels/@room.HotelId/@room.MainImage" class="card-img-top rounded-circle border border-white border-2 mt-2 " height="180px" />
+                                    <div class="card-body text-primary text-center ">
+                                        <p class="card-title fw-bold fs-4 ">@room.Type </p>
+                                        @if (room.OfferPrice == null)
+                                        {
+                                            <p> <span class="text-warning m-2 fw-bold fs-4">@room.Price.ToString("c")</span></p>
+
+                                        }
+                                        else
+                                        {
+                                            <p> <del class="  fw-bold fs-5">@room.Price.ToString("c")</del><span class="text-warning m-2 fw-bold fs-4">@room.OfferPrice.Value.ToString("c")</span></p>
+                                        }
+                                    </div>
+
+                                    <div class="d-grid gap-2   ">
+                                        <a asp-controller="Room" asp-action="Index" asp-route-Id="@room.Id" class="btn btn-outline-primary btn-dark btn-lg fw-bold fs-4   ">Details </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </main>
+        }
+
+    </div>
+</div>
+
+@*                                       *@

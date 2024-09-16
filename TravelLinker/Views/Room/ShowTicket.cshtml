@@ -1,0 +1,60 @@
+﻿@model ShowDetailsBookingRoom 
+
+<body class="bg-white">
+    <div class=" mt-5 pt-5 rounded container rounded-bottom-5 ">
+        <div class="row">
+            <div class="col-12 col-sm-8 col-md-6 mx-auto rounded rounded-top-5">
+                <div class="card text-bg-primary mb-3 rounded rounded-bottom-5 rounded-top-5 " style="max-width: 38rem;">
+                    <div class="card-header  bg-dark rounded-top-5">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <h3> Travel Linker</h3>
+                            </div>
+                            <div class="col-md-4 offset-2 ">
+                                <img src="~/Images/TL.png" class="rounded rounded-circle" style="height:50px; width:150px; mix-blend-mode:lighten; " />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body row" style="max-width: 40rem;">
+                        <h4 class="card-title m-1 text-center"> @Model.NumberOfDays Days @Model.Type  </h4>
+                        <h6 class="card-title m-1 text-center">Room @Model.Number Floor @Model.Floor </h6>
+                        <h5 class="card-title"> Mr/Ms : <span class="text-dark fw-bold"> @Model.ClientName</span>  </h5>
+
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th class="text-primary fw-bold fs-4 text-center "> checkin</th>
+                                    <th class="text-primary fw-bold fs-4 text-center">checkout </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+
+                                    <td class="text-light fs-5 text-center">@Model.CheckIn  </td>
+                                    <td class="text-light fs-5 text-center">  @Model.CheckOut   </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <div class="row">
+                            <h5 class="card-title col-md-6 m-2 mt-5 fw-bold">Total :   @Model.Total  </h5>
+                            <div class="col-md-5 ">
+                                <h4 class="card-title offset-4 ">owner </h4>
+                                <h5 class="card-title  text-dark  fw-bold offset-4">@Model.Owner </h5>
+                                <div class="row  offset-2">
+                                    <div class="col-6 m-0 p-0 "> <span class="text-white fw-bold fs-4 bg-dark rate container  ">@Model.ScheduleId</span></div>
+                                    <div class="col-6 m-0 p-0 "> <span class="text-white fw-bold fs-4 bg-dark rate container  ">@Model.Id</span></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

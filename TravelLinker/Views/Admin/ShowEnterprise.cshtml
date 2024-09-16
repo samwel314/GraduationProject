@@ -1,0 +1,198 @@
+﻿@model ProfileViewModel
+
+<div class="navigation ">
+    <ul>
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="logo-apple"></ion-icon>
+                </span>
+
+            </a>
+        </li>
+
+        <li>
+            <a asp-controller="Admin" asp-action="Dashbord" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="home-outline"><i class="bi bi-house"></i></ion-icon>
+                </span>
+                <span class="title ">Home</span>
+            </a>
+        </li>
+
+        <li>
+
+            <a asp-area="Identity" asp-page="/Account/Register" class="text-dark fs-4 fw-bold">
+                <span class="icon">
+                    <ion-icon name="bag-add-outline"><i class="bi bi-bag-plus"></i></ion-icon>
+                </span>
+                <span class="title">Register </span>
+            </a>
+        </li>
+
+
+
+
+
+
+
+    </ul>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+            <ion-icon name="menu-outline "><i class="bi bi-list text-light"></i></ion-icon>
+        </div>
+    </div>
+    <!-- ======================= Cards ================== -->
+
+    <div class=" card container  ">
+        <div class="row offset-1">
+            @if (Model.ProfileImage == null)
+            {
+
+                <div class="col-md-4 ">
+                    <img src="~/Images/TL.png" class="rounded-circle p-1" style="height:130px;width:130px;" />
+                    <h5 class="text-primary fw-bold offset-3 ">@Model.EnterpriseName</h5>
+                    <p class="text-white  fs-6  offset-4 "><i class="bi bi-envelope-at-fill text-secondary"></i>  @Model.Email</p>
+
+                </div>
+
+            }
+            else
+            {
+                if (Model.Type == StaticData.CompanyType)
+                {
+                    <div class="col-md-4 ">
+                        <img src="~/Companies/@Model.Id/@Model.ProfileImage" class="rounded-circle p-1" style="height:130px;width:130px;" />
+                        <h5 class="text-primary fw-bold offset-3 ">@Model.EnterpriseName</h5>
+                        <p class="text-white  fs-6  offset-4 "><i class="bi bi-envelope-at-fill text-secondary"></i>  @Model.Email</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4 ">
+                        <img src="~/Hotels/@Model.Id/@Model.ProfileImage" class="rounded-circle p-1" style="height:130px;width:130px;" />
+                        <h5 class="text-primary fw-bold offset-3 ">@Model.EnterpriseName</h5>
+                        <p class="text-white  fs-6  offset-4 "><i class="bi bi-envelope-at-fill text-secondary"></i>  @Model.Email</p>
+                    </div>
+                }
+
+            }
+
+
+
+
+            <div class=" col-md-3 mt-3 offset-3  ">
+                <div class="row">
+                    <h4 class="text-primary col-6  m-0 p-0">@Model.RateResult </h4>
+                    <div class="col-4 m-0 p-0 "> <span class="text-white fw-bold fs-4 bg-primary rate align-content-center justify-content-center  ">@Model.Rate</span></div>
+                    <span class="text-light review">@Model.Reviews reviews</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row offset-2 mt-3">
+        <div class="col-md-6">
+            <p>
+                <button class="btn btn-primary fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    Description
+                </button>
+            </p>
+            <div style="min-height: 120px;">
+                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="card card-body text-white" style="width: 300px;">
+                        @Model.Description
+                        <p class="text-white fs-6 fw-bold mt-3"><i class="bi bi-geo-alt-fill text-primary"></i> @Model.Location  </p>
+                        <p class="text-white fs-6 fw-bold "><i class="bi bi-telephone-fill text-primary"></i> @Model.PhoneNumber  </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <p>
+                <button class="btn btn-primary fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample1" aria-expanded="false" aria-controls="collapseWidthExample1">
+                    Total Income
+                </button>
+            </p>
+            <div style="min-height: 120px;">
+                <div class="collapse collapse-horizontal" id="collapseWidthExample1">
+                    <div class="card card-body text-white fw-bold fs-5" style="width: 150px;">
+                        @Model.TotalIn
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row m-2 ">
+
+        <div class="col-md-6   ">
+            <p class="d-inline-flex gap-1">
+
+                <button class="btn btn-primary fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+                    Comments
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample3">
+                <div class=" ">
+                    <div class="card-body text-white    ">
+
+                        @foreach (var Comment in Model.ViewComments)
+                        {
+                            <div class="col-md-12   mt-2">
+                                <div class="card  rounded rounded-5 rounded-bottom-5">
+
+                                    <div class="card-body text-white   ">
+                                        <div class=" comment mt-2 ">
+                                            <div class="row">
+                                                <h4 class="text-light fw-bold col-6"> <i class="bi bi-person-circle text-primary fs-2 m-2"></i> @Comment.UserName </h4>
+                                                <p class="text-black  fw-bold profile-email col-6 mt-3"><i class="bi bi-envelope-at-fill text-black"></i>   @Comment.Email</p>
+                                            </div>
+                                            <p class="text-white fw-bold profile-email">  <i class="bi bi-arrow-return-right  text-black fw-bold fs-3 p-2"></i>  @Comment.Content</p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-5 card m-2 h-100 ">
+            <div class="row bg-dark border border-2 rounded-3 bg-primary m-2 " style="">
+                <div class="col-md-6">
+                    <h4 class="text-white mt-4">@(Model.Type == StaticData.CompanyType ? "Number Of Trips" : "Number Of Rooms")  </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-primary mt-4">@Model.NumServies</h4>
+                </div>
+            </div>
+            <div class="row bg-dark border border-2 rounded-3 bg-primary m-2 " style="">
+                <div class="col-md-6">
+                    <h4 class="text-white mt-4">Total Completed  Booking </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-primary mt-4">@Model.NumBooking</h4>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>

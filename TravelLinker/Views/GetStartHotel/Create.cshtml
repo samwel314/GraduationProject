@@ -1,0 +1,199 @@
+﻿@model Room 
+<body class="bg">
+    <div class="container">
+        <div class="here">
+            <h2 class="text-center text-light mt-1 ">Where There is Competition,  </h2>
+            <h2 class="text-center text-light ">There Is Success </h2>
+        </div>
+        <div class="row  text-start">
+            <div class=" col-md-8    ">
+                <div class="  card-custom  card  navbar-expand-lg text-white  bg-primary  ">
+                    <div class=" header-custom   ">
+                        <nav class="navbar">
+                            <div class="container">
+                                <a class="navbar-brand text-white    btn btn-primary"> <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" width="30" height="30" class="rounded-circle border border-white border-2   " /> TravelLinker</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                    <ul class="navbar-nav flex-grow-1">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white  fst-italic btn btn-primary">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white  fst-italic btn btn-primary">Privacy</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <div class="dropdown">
+
+                                                <a class="nav-link text-white  fst-italic btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">  Manage Service </a>
+
+                                                <ul class="dropdown-menu bg-light">
+                                                    <li><a asp-action="Index" class="dropdown-item ">Frindes View  </a></li>
+
+                                                    <li><a asp-action="Create" class="dropdown-item  ">Create New Room</a></li>
+                                                    <li><a asp-action="Show" class="dropdown-item ">Show Rooms </a></li>
+                                                </ul>
+                                            </div>
+
+                                        </li>
+                                        <li class="nav-item offset-1">
+                                            <a class="nav-link text-white    ">   <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" width="30" height="30" class="rounded-circle border border-white border-2  " />Hello</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white   ">Logout </a>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="card-body  body-custom  ">
+                        <div class="container   ">
+                            <form class="myForm">
+
+                                <div class="card create_room create_roombody">
+                                    <h5 class=" text-center text-white  bg-primary create_title ">Creat New Room </h5>
+                                    <fieldset>
+                                        <div class="row  ps-1">
+                                            <div class="col-6 ">
+                                                <div class="row">
+                                                    <div class="col-md-6  ">
+                                                        <div class="form-group ">
+                                                            <label class="small  text-light">Room Number</label>
+                                                            <input asp-for="Number" disabled type="text" class="form-control h-25 w-75 rounded-5 form-control-sm custom-input" disabled placeholder="200">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group  ">
+                                                            <label class="small text-light">Price Per Night</label>
+                                                            <input asp-for="PricePerNight" disabled type="text" class="form-control w-75 rounded-5 form-control-sm" disabled placeholder="300$">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group ">
+                                                            <label class="small text-light">Floor Number</label>
+                                                            <input asp-for="FloorNumber" disabled type="text" class="form-control w-75 rounded-5 form-control-sm" disabled placeholder="10">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group ">
+                                                            <label class="small text-light">Price per week</label>
+                                                            <input asp-for="PricePerWeek" disabled type="text" class="form-control w-75 rounded-5 form-control-sm" disabled placeholder="1000$">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group ">
+                                                            <label class="small text-light">Beds Number</label>
+                                                            <input asp-for="BedsNumber" disabled type="text" class="form-control w-75 rounded-5 form-control-sm" disabled placeholder="5">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group text-light ">
+                                                            <label class="small">Price Per month</label>
+                                                            <input asp-for="PricePerMonth" disabled type="text" class="form-control w-75 rounded-5 form-control-sm" disabled placeholder="5000$">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-6  ">
+                                                        <label class="form-label   small text-light">Type Room</label>
+                                                        <select asp-for="Type" asp-items="@StaticData.LoadRoomTypes()" class="form-select form-select-sm w-75 rounded-5   " disabled>
+                                                            <option selected>@Model.Type </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-6  ">
+                                                        <label class="form-label   small text-light">Features Room</label>
+                                                        <select asp-items="@StaticData.LoadRoomFeatures()" class="form-select form-select-sm   w-75 rounded-5" disabled>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <fieldset>
+                                                    <h5 class=" text-center text-light">Uploaded Photos</h5>
+                                                    <div class="uploaded-files ">
+                                                        <div class="  photos justify-content-center align-items-center flex-column ">
+                                                            <div class="text-center  ">
+                                                                <img src="/Images/@Model.ImageUrl" alt="Your Image" width="150" height="100" style="  border-radius: 50%;">
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <label class="form-label offset-3  small text-light ">Add Photos</label>
+                                                    <input disabled class=" form-control offset-3 form-control-sm btn-sm w-50 rounded-5  btn-outline-secondary" type="file" multiple>
+
+
+                                                </fieldset>
+
+
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+                                    <div class="container  p-1">
+                                        <div class="row justify-content-start offset-1 ">
+                                            <div class="col-md-3  p-1 ">
+                                                <button class="rounded-5 text-danger fs-3   fw-bold  bg-white">  click  </button> <i class="bi bi-arrow-right text-danger fw-bold fs-1 display-6    "> </i>
+                                            </div>
+                                            <div class="col-md-5 p-2 border border-4 border-danger ">
+
+                                                <a asp-action="Index" asp-route-flage="1" class=" btn btn-outline-primary  btn-lg w-100 fw-bold rounded-5 button-custom">Create</a>
+                                            </div>
+                                            <div class="col-md-3 p-2">
+                                                <button disabled class="btn  btn-outline-primary  btn-lg w-75 fw-bold rounded-5 button-custom ">
+                                                    Back
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4  m-4 ">
+                <div class="holder ">
+                    <div class="one">
+                        <p class="text-insidee ">Welcome Company Trip..,let's Take a Trip Through The Most Important Websites competing for Companies</p>
+                    </div>
+                    <div class="two"></div>
+
+                    <div class="maindott text-center">
+
+                        <a asp-area="Identity" asp-page="/Account/Register" class="button-between-dots btn btn-outline-primary   btn-lg fw-bold rounded-5  text-uppercase  ">Skip</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Trip>
+<main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+        <div class="container">
+          <div class="row">
+            @foreach (var trip in Model)
+            {
+                <div class="col-lg-3 p-2">
+
+
+
+                    <div class="card text-white bg-light mt-4 p-2 ">
+                        <div class="card-body text-primary  ">
+                            <div class="form-group row">
+                                <h4 class="col-4 fw-bold">
+                                    From :
+                                </h4>
+                                <input value="@trip.From" type="text" disabled class="form-control text-light fw-bold bg-primary w-50 col-8 " id="fromTime" />
+
+                            </div>
+                            <div class="form-group row mt-4 ">
+                                <h4 class="col-4 fw-bold">
+                                    To :
+                                </h4>
+                                <input value="@trip.To" type="text" disabled class="form-control text-light fw-bold bg-primary w-50 col-8 " id="fromTime" />
+
+                            </div>
+
+                            <h4 class=" text-center">  <span class="text-warning m-2">@trip.Price.ToString("c")</span></h4>
+                        </div>
+                        <div class="d-grid gap-2   ">
+                            <a asp-controller="Trip" asp-action="Index" asp-route-Id="@trip.Id" class="btn btn-outline-primary btn-dark btn-lg fw-bold fs-4  ">Detals </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+
+           </div>
+                
+        </div>
+     
+    
+</main>

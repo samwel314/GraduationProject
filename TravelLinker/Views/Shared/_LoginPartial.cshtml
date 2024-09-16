@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TravelLinkerModels.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+     {
+        var user = await UserManager.GetUserAsync(User);
+        var UserType =
+        User.Claims.First(x => x.Type == StaticData.UserTypeClaim).Value;
+        @if (UserType != StaticData.AdminType)
+        {
+            <li class="nav-item">
+
+                @if (user?.ProfileImage != null)
+                {
+                    if (UserType == StaticData.HotelType)
+                    {
+                        <a class="nav-link text-white fw-bold fs-5 fst-italic" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">   <img src="~/Hotels/@user.Id/@user.ProfileImage" width="40" height="40" class="rounded-circle border border-white border-2  " /></a>
+
+                    }
+                    else
+                    {
+                        <a class="nav-link text-white fw-bold fs-5 fst-italic" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                            <img src="~/Companies/@user.Id/@user.ProfileImage
+                            " width="40" height="40" class="rounded-circle border border-white border-2  " /></a>
+
+                    }
+                }
+                else
+                {
+                    <a class="nav-link text-white fw-bold fs-5 fst-italic" asp-controller="Profile" asp-action="Index" title="Manage">   <img src="~/Images/WhatsApp Image 2024-01-09 at 13.21.54_c34c4047222.jpg" width="40" height="40" class="rounded-circle border border-white border-2  " /></a>
+                }
+   
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-bold fs-5 fst-italic btn btn-primary" asp-controller="Profile" asp-action="Index" title="Manage">Hello @user?.EnterpriseName</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white fw-bold fs-5 fst-italic btn btn-primary" asp-controller="Admin" asp-action="Dashbord" title="Manage">Hello @user?.EnterpriseName</a>
+            </li>
+        }
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link text-white fw-bold fs-5 fst-italic btn btn-primary">Logout</button>
+            </form>
+        </li>
+     }
+    else
+    {
+      @*   <li class="nav-item">
+            <a class="nav-link text-white fw-bold fs-5 fst-italic btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li> *@
+        <li class="nav-item">
+            <a class="nav-link text-white fw-bold fs-5 fst-italic btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

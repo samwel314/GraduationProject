@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShowDetailsTicket>
+
+<body class="bg-white">
+    <div class=" mt-5 pt-5 rounded container rounded-bottom-5 ">
+        <div class="row">
+            @foreach (var tic in Model)
+            {
+                <div class=" col-md-6 mx-auto rounded rounded-top-5">
+                    <div class="card text-bg-primary mb-3 rounded rounded-bottom-5 rounded-top-5 " style="max-width: 38rem;">
+                        <div class="card-header  bg-dark rounded-top-5">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <h3> Travel Linker</h3>
+                                </div>
+                                <div class="col-md-4 offset-2 ">
+                                    <img src="~/Images/TL.png" class="rounded rounded-circle" style="height:50px; width:150px; mix-blend-mode:lighten; " />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body row" style="max-width: 40rem;">
+                            <h4 class="card-title m-1 text-center"> @tic.StartDate  </h4>
+                            <h6 class="card-title m-1 text-center">@tic.NumberOfTickets Ticket </h6>
+                            <h5 class="card-title"> Mr/Ms : <span class="text-dark fw-bold">@tic.ClientName</span>  </h5>
+
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th class="text-primary fw-bold fs-4 text-center "> From</th>
+                                        <th class="text-primary fw-bold fs-4 text-center">To </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+
+                                        <td class="text-light fs-5 text-center"> @tic.From  </td>
+                                        <td class="text-light fs-5 text-center"> @tic.To   </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                            <div class="row">
+                                <h5 class="card-title col-md-5 m-2 mt-5 fw-bold">Total :   @tic.Total   </h5>
+                                <div class="col-md-6 ">
+                                    <h4 class="card-title offset-5 ">owner </h4>
+                                    <h5 class="card-title  text-dark  fw-bold offset-5">@tic.Owner </h5>
+                                    <div class="row  offset-5">
+                                        <div class="col-6 m-0 p-0 "> <span class="text-white fw-bold fs-4 bg-dark rate container  ">@tic.Code</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+            
+
+        </div>
+    </div>
+</body>

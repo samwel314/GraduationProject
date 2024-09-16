@@ -1,0 +1,156 @@
+﻿@model UpCreateVehicleVM
+<body class="bg">
+    <div class="container">
+        <div class="here">
+            <h2 class="text-center text-light mt-1 ">Where There is Competition,  </h2>
+            <h2 class="text-center text-light ">There Is Success </h2>
+        </div>
+        <div class="row  text-start">
+            <div class=" col-md-8    ">
+                <div class="  card-custom  card  navbar-expand-lg text-white  bg-primary  ">
+                    <div class=" header-custom   ">
+                        <nav class="navbar">
+                            <div class="container">
+                                <a class="navbar-brand text-white    btn btn-primary"> <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" width="30" height="30" class="rounded-circle border border-white border-2   " /> TravelLinker</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                    <ul class="navbar-nav flex-grow-1">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white  fst-italic btn btn-primary">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white  fst-italic btn btn-primary">Privacy</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <div class="dropdown">
+
+                                                <a class="nav-link text-white  fst-italic btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">  Manage Service </a>
+
+                                                <ul class="dropdown-menu bg-light">
+                                                    <li><a asp-action="Index" asp-route-flage="1" class="dropdown-item ">Frindes View  </a></li>
+
+                                                    <li><a asp-action="CreateVehicle" class="dropdown-item  ">Create New Vehicle</a></li>
+                                                    <li><a asp-action="ShowVehicle" class="dropdown-item  ">Show  Vehicle</a></li>
+                                                    <li><a asp-action="CreateTrip" class="dropdown-item  ">Create New Trip</a></li>
+                                                    <li><a asp-action="ShowTrip" class="dropdown-item ">Show Trip </a></li>
+                                                </ul>
+                                            </div>
+
+                                        </li>
+                                        <li class="nav-item offset-2">
+                                            <a class="nav-link text-white    ">   <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" width="30" height="30" class="rounded-circle border border-white border-2  " />Hello</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white   ">Logout </a>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="card-body  body-custom  ">
+                        <div class=" create_room create_roombody ">
+
+                            <div class=" card-header bg-primary text-white text-center rounded-top-5 create_title mt-3  ">
+                                <h4>Manage Your 3 Vehicle</h4>
+                            </div>
+                            <div>
+                                <table class="table table-hover  table-striped table-light ">
+
+                                    <thead>
+                                        <tr class="offset-0  ">
+                                            <th class="text-primary" scope="col">Type</th>
+                                            <th class="text-primary" scope="col">Capacity</th>
+                                            <th class="text-primary" scope="col">LicenseNumber</th>
+
+                                            <th scope="col" class="text-center text-primary">  available </th>
+                                            <th scope="col" class="text-center text-primary">Action </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-light ">
+                                            <th>coach </th>
+                                            <td>50</td>
+                                            <td>A1231</td>
+
+                                            <td class="text-center border border-2 border-danger btn-sm ">
+                                                <a class="btn btn-outline-success btn-sm mt-2 "> <i class="bi bi-bookmark-check-fill "></i> available  </a>
+                                                <a class="btn btn-outline-danger btn-sm mt-2"> <i class="bi bi-bookmark-x-fill "></i> Not available </a>
+                                            </td>
+                                            <td class="text-center border border-2 border-danger btn-sm">
+                                                <a class="btn btn-outline-info btn-sm mt-2"> <i class="bi bi-pencil"></i>  Update</a>
+
+                                                <a class="btn btn-outline-danger btn-sm mt-2   "> <i class="bi bi-trash"></i>  Delete</a>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="table-light ">
+                                            <th>coach </th>
+                                            <td>50</td>
+                                            <td>A1231</td>
+
+                                            <td class="text-center">
+                                                <a class="btn btn-outline-success btn-sm "> <i class="bi bi-bookmark-check-fill "></i> available  </a>
+                                                <a class="btn btn-outline-danger btn-sm "> <i class="bi bi-bookmark-x-fill "></i> Not available </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-outline-info btn-sm "> <i class="bi bi-pencil"></i>  Update</a>
+
+                                                <a class="btn btn-outline-danger btn-sm    "> <i class="bi bi-trash"></i>  Delete</a>
+                                            </td>
+                                        </tr>
+                                        
+                                        @if (Model.Id != 0)
+                                        {
+                                            <tr class="table-light ">
+                                                <th>@Model.Type </th>
+                                                <td>@Model.Capacity</td>
+                                                <td>@Model.LicenseNumber</td>
+
+                                                <td class="text-center">
+                                                    <a class="btn btn-outline-success btn-sm "> <i class="bi bi-bookmark-check-fill "></i> available  </a>
+                                                    <a class="btn btn-outline-danger btn-sm "> <i class="bi bi-bookmark-x-fill "></i> Not available </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-outline-info btn-sm "> <i class="bi bi-pencil"></i>  Update</a>
+
+                                                    <a class="btn btn-outline-danger btn-sm    "> <i class="bi bi-trash"></i>  Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4  m-4 ">
+                <div class="holder ">
+                    <div class="one">
+                        <p class="text-insidee ">Welcome Company Trip..,let's Take a Trip Through The Most Important Websites competing for Companies</p>
+                    </div>
+                    <div class="two"></div>
+
+                    <div class="maindott text-center">
+
+                        <a asp-area="Identity" asp-page="/Account/Register" class="button-between-dots btn btn-outline-primary   btn-lg fw-bold rounded-5  text-uppercase  ">Skip</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

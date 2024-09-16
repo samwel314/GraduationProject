@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ShowVehicleVm>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="myToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex" >
+            <div class="toast-body text-light  fw-bold fs-6" >
+                @TempData["message"]
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<div class="card fs-5 p-3 py-2 rounded-top-5 rounded-5 ">
+
+    <div class="card-header bg-primary   text-white text-center rounded-top-5  py-3">
+        <h4 class="display-6 fw-bold  fst-italic">Manage Your  @Model.Count() Vehicle</h4>
+    </div>
+    <div class="card-body  ">
+        <table class="table table-hover  table-striped table-light ">
+
+            <thead>
+                <tr class="offset-0 fw-bold fs-5 ">
+                    <th class="text-primary" scope="col">Type</th>
+                    <th class="text-primary" scope="col">Capacity</th>
+                    <th class="text-primary" scope="col">LicenseNumber</th>
+
+                    <th scope="col" class="text-center text-primary">  Vehicle Schedules  </th>
+                    <th scope="col" class="text-center text-primary">Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ve in Model)
+                {
+                    <tr class="table-light fw-bold fs-5">
+                        <th>@ve.Type </th>
+                        <td>@ve.Capacity </td>
+                        <td>@ve.LicenseNumber </td>
+
+                        <td class="text-center">
+                            <a asp-action="GetVehicleSchedules" asp-route-Id="@ve.Id" class="btn btn-outline-success fw-bold ">  Show Vehicle Schedules  </a>
+                        </td>
+                        <td class="text-center">      
+                            <a asp-action="UpCreate"  asp-route-Id="@ve.Id" class="btn btn-outline-info fw-bold"> <i class="bi bi-pencil"></i>  Update</a>
+                            <a asp-action="Delete" asp-route-Id="@ve.Id" class="btn btn-outline-danger fw-bold "> <i class="bi bi-trash"></i>  Delete</a>
+                        </td>
+                    </tr>
+                  }
+
+            </tbody>
+        </table>
+        <div class="offset-1">
+            <a class="btn btn-outline-primary text-white rounded-5  fw-semibold btn-sm  mt-2 fs-5 text-uppercase border border-primary ">
+                <small>Back to home</small>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var toastEl = document.getElementById('myToast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    });
+</script>

@@ -1,0 +1,121 @@
+﻿@using TravelLinkerDataAccess.Data
+@model UpCreateTripVM
+@inject ApplicationDbContext  _db
+@{
+    ViewData["Title"] = Model.Id == null ?  "Create Trip " : $" Update Trip  With Code : {Model.Code} ";
+}
+<div class="container p-2 w-75">
+    <form method="post" class="myForm">
+        <div class="card rounded-top-5 rounded-5 ">
+            <h2 class="form-title text-center text-white p-2 mb-4 bg-primary  rounded-top-5">@ViewData["Title"] </h2>
+            <div asp-validation-summary="ModelOnly" class="text-warning fw-bold" role="alert"></div>
+             <input hidden asp-for="Id" />
+            <input hidden asp-for="CompanyId" />
+            <fieldset>
+                <div class="row  ps-3 pe-3">
+                    <div class="col-12 ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-2 ">
+                                    <label asp-for="From" class="form-label   fw-bold text-white  ">From</label>
+                                    <select asp-for="From" asp-items="@StaticData.LoadCitiesInEgypt()" class="form-select  fs-6  fw-bold border border-dark border-2 rounded-5">
+                                        <option selected disabled>Select Start  point For this trip </option>
+                                    </select>
+                                    <span asp-validation-for="From" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="To"  class="form-label  text-white fs-6 fw-bold ">To</label>
+                                    <select asp-for="To" asp-items="@StaticData.LoadCitiesInEgypt()" class="form-select  fs-6  fw-bold border border-dark border-2 rounded-5 ">
+                                        <option selected disabled>Select End point For this trip </option>
+
+                                    </select>
+                                    <span asp-validation-for="To" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="StartAt" class="form-label text-white fs-6 fw-bold ">Start at</label>
+                                    <input asp-for="StartAt"  class="form-control fw-bold border border-dark border-2 rounded-5">
+                                    <span asp-validation-for="StartAt" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="Duration" class="form-label  text-white fs-6 fw-bold ">Duration</label>
+                                    <input asp-for="Duration"  class="form-control fw-bold border border-dark border-2 rounded-5" placeholder="number of hours">
+                                    <span asp-validation-for="Duration" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-2 ">
+                                    <label asp-for="VehicleId" class="form-label  text-white fs-6 fw-bold ">Assigned Vehicles</label>
+                                    <select asp-items="@StaticData.loadCompanyVehicles(_db,Model.CompanyId )" asp-for="VehicleId" class="form-select  fs-6 fw-bold border border-dark border-2 rounded-5 ">
+                                        <option disabled selected > Select Vehicle  </option>
+
+                                    </select>
+                                    <span asp-validation-for="VehicleId" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="LastDate" class="form-label text-white fs-6 fw-bold ">Deadline For Booking</label>
+                                    <input asp-for="LastDate"  class="form-control fw-bold border border-dark border-2 rounded-5">
+                                    <span asp-validation-for="LastDate" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-2 ">
+                                    <label asp-for="Code" class="form-label text-white fs-6 fw-bold ">Sample Code </label>
+                                    <input asp-for="Code" class="form-control fw-bold border border-dark border-2 rounded-5">
+                                    <span asp-validation-for="Code"  class="text-warning fw-bold"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="Price" class="form-label text-white fs-6 fw-bold ">Price</label>
+                                    <input asp-for="Price" class="form-control fw-bold border border-dark border-2 rounded-5">
+                                    <span asp-validation-for="Price" class="text-warning fw-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </fieldset>
+            <div class="container p-4 ">
+                <div class="row justify-content-start offset-1  ">
+                    <div class="col-md-4 d-grid gap-2 w-50 offset-2">
+                        <button type="submit" class="btn btn-outline-primary btn-dark  rounded-pill fs-4 text-uppercase  border border-primary">@(Model.Id == null ? "Create" : "Update") </button>
+                    </div>
+
+                    <div class=" col d-grid gap-2 d-md-flex justify-content-md-end ">
+                        <a asp-controller="Company" asp-action="DisPlayAll" class="btn btn-outline-primary  text-white   fw-semibold btn-sm mb-1 fs-5 text-uppercase border fw-bold border-primary rounded-pill">
+                            <small>Back to home</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+@section scripts {
+    <partial name="_validationscriptspartial" />
+}

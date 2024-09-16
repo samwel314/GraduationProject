@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Trip> 
+
+<div class="card fs-5 p-3 py-2  rounded-top-5 rounded-5">
+    <div class="card-header bg-primary   text-white text-center  rounded-top-5  py-3">
+        <h4 class="display-6 fw-bold  fst-italic">Manage Trip</h4>
+    </div>
+    <div class="card-body  ">
+        <table class="table table-hover  table-striped table-light table-bordered ">
+
+            <thead>
+                <tr class="offset-0 fw-bold fs-5 ">
+                    <th class="text-primary" scope="col">From</th>
+                    <th class="text-primary" scope="col">To</th>
+                    <th class="text-primary" scope="col">Code</th>
+                    <th class="text-primary" scope="col">Price</th>
+                    <th class="text-primary" scope="col">Start</th>
+
+                    <th class="text-primary" scope="col">Booking  Deadline</th>
+                    <th scope="col" class="text-center text-primary"> Tickets </th>
+                    <th scope="col" class="text-center text-primary">Action </th>
+                </tr>
+            </thead>
+            <tbody>
+           @foreach (var trip in Model.OrderByDescending(t=>t.StartAt))
+           {
+                    <tr class="table-light fw-bold fs-5">
+                        <th>@trip.From </th>
+                        <td>@trip.To </td>
+                        <td> @trip.Code</td>
+                        <td>@trip.Price.ToString("c") </td>
+                        <td>@trip.StartAt.ToLongDateString() </td>
+
+                        <td>@trip.LastDate.ToLongDateString() </td>
+                        <td class="text-center">
+                            <a asp-controller="Trip" asp-action="ShowAllTickets" asp-route-Id="@trip.Id" class="btn btn-outline-success fw-bold">  Show</a>
+                        </td>
+                        <td class="text-center">
+                            <a asp-controller="Trip"    asp-action="UpCreate" asp-route-id="@trip.Id" class="btn btn-outline-info fw-bold"> <i class="bi bi-pencil"></i>  Update</a>
+                            <button id="@trip.Id" data-Id="@trip.Id" data-lock="@(trip.IsHidden ? 1 : 0)" class="clock m-2 btn  @(trip.IsHidden ? "btn-success" : "btn-warning")   fs-5  fw-bold"><i class=' @(trip.IsHidden  ?  "bi bi-eye-fill" : "bi bi-eye-slash-fill")'></i> @(trip.IsHidden ? " Not Hide " : " Hide     ")</button>
+
+                        </td>
+
+                    </tr>
+           }
+            </tbody>
+        </table>
+        <div class="offset-1">
+            <a class="btn btn-outline-primary text-white rounded-5 fw-semibold btn-sm  mt-2 fs-5 text-uppercase border border-primary ">
+                <small>Back to home</small>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.clock').on('click', function () {
+            var a = $(this);
+            var Id = a.data('id');
+            var lockvalue = a.data('lock');   // 1
+            if (lockvalue == 1)
+                lockvalue = 0;
+            else
+                lockvalue = 1;
+
+            a.data('lock', lockvalue);
+
+
+            $.ajax({
+                url: '/Trip/HideNotHide/' + Id,
+                type: 'POST',
+                success: function () {
+                    //"bi bi-unlock" : "bi bi-lock-fill"
+                    if (lockvalue == 1) {
+                        $('#' + Id).empty().html('<i  class="bi bi-eye-fill"></i> Not Hide ');;
+                        $('#' + Id).removeClass('btn-warning').addClass('btn-success');
+                    }
+                    else {
+                        $('#' + Id).empty().html('<i class="bi bi-eye-slash-fill"></i>  Hide ');
+                        $('#' + Id).removeClass('btn-success').addClass('btn-warning');
+                    }
+
+                }
+            });
+        });
+    });
+
+
+</script>

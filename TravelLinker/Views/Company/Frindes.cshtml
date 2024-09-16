@@ -1,0 +1,106 @@
+﻿@model CityFrindesVM
+
+@{
+    ViewData["Title"] = $"Your  Frindes  in {Model.City}";
+}
+
+<div class="container">
+    <div class="row mt-5">
+
+        <nav aria-label="Page navigation example" id="carouselExample" class="carousel slide row ">
+            <div class="carousel-inner col-md-8 ">
+                <div class="carousel-item @(Model.City == "Giza" || Model.City == "Aswan" || Model.City == "Luxor" || Model.City == "Cairo" || Model.City == "Alexandria" ? "active" : "")  text-center">
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Cairo" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Cairo">Cairo</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Alexandria" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Alexandria">Alexandria</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Luxor" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Luxor">Luxor</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Aswan" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Aswan">Aswan</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Giza" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Giza">Giza</a>
+                </div>
+                <div class="carousel-item @(Model.City == "Mansoura" || Model.City == "Suez" || Model.City == "Port Said" || Model.City == "Hurghada" || Model.City == "Sharm El Sheikh" ? "active" : "")  text-center">
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Sharm El Sheikh" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Sharm El Sheikh">Sharm El Sheikh</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Hurghada" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Hurghada">Hurghada</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Port Said" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Port Said">Port Said</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Suez" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Suez">Suez</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Mansoura" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Mansoura">Mansoura</a>
+
+
+                </div>
+                <div class="carousel-item @(Model.City == "Sohag" || Model.City == "Ismailia" || Model.City == "Beni Suef" || Model.City == "Fayoum" || Model.City == "Zagazig" ? "active" : "")  text-center">
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Ismailia" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Ismailia">Ismailia</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Fayoum" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Fayoum">Fayoum</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Zagazig" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Zagazig">Zagazig</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Beni Suef" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Beni Suef">Beni Suef</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Sohag" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Sohag">Sohag</a>
+
+
+                </div>
+                <div class="carousel-item @(Model.City == "Mallawi" || Model.City == "Banha" || Model.City == "Kafr el-Sheikh" || Model.City == "Damanhur" || Model.City == "Tanta" ? "active" : "")  text-center">
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Tanta" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Tanta">Tanta</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Damanhur" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Damanhur">Damanhur</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Kafr el-Sheikh" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Kafr el-Sheikh">Kafr el-Sheikh</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Banha" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Banha">Banha</a>
+                    <a class="text-primary border border-2 border-primary fw-bold fs-4 btn btn-outline-light m-2 rounded-4 @(Model.City == "Mallawi" ? "active" : "")" asp-controller="Company" asp-action="Frindes" asp-route-City="Mallawi">Mallawi</a>
+
+                </div>
+            </div>
+            <div class="active">
+                <a class=" carousel-control-prev text-primary    fw-bold fs-1 ss btn btn-outline-light  " data-bs-target="#carouselExample" aria-label="Previous" data-bs-slide="prev">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </div>
+            <div class=" ">
+                <a class="  carousel-control-next text-primary ss btn-sm  fw-bold fs-1 btn btn-outline-light  " data-bs-target="#carouselExample" aria-label="Next" data-bs-slide="next">
+                    <span aria-hidden="true" class="fs-1">&raquo;</span>
+                </a>
+            </div>
+
+
+        </nav>
+
+    </div>
+    <div class="row mt-4">
+
+        @foreach (var frinde in Model.Frindes)
+        {
+            <div class="col-md-6">
+
+                <div class="card rounded-bottom">
+
+                    <div class="card-body text-white   ">
+                        <div class="border border-2 rounded-3 bg-light  mt-2">
+                            <div class="row">
+                                @if (frinde.Image == null)
+                                {
+                                    <div class="col-md-3">
+                                        <img src="~/Images/TL.png" class="rounded-circle p-1" style="height:130px;width:130px;" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-3">
+                                        <img src="~/Hotels/@frinde.Id/@frinde.Image" class="rounded-circle p-1" style="height:130px;width:130px;" />
+                                    </div>
+                                }
+
+                                <div class="col-md-4 mt-4">
+                                    <h5 class="text-primary fw-bold">  @frinde.Name</h5>
+                                    <p class="text-black  fs-6  "><i class="bi bi-envelope-at-fill text-secondary"></i>   @frinde.Email</p>
+                                    <p class="text-black fs-6 fw-bold"><i class="bi bi-geo-alt-fill"></i> @Model.City @frinde.Location</p>
+                                </div>
+                                <div class="col-md-5 mt-4">
+                                    <a asp-action="ViewFrind" asp-route-Id="@frinde.Id" class="btn btn-outline-primary btn-dark   fw-bold w-75 offset-2 m-2 ">View Friend  </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

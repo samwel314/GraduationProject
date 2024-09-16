@@ -1,0 +1,303 @@
+﻿@model ProfileViewModel
+
+@{
+    ViewData["Title"] = Model.EnterpriseName + " Profiele ";
+
+    //////// go  to UserService to Work with it page and profile Controller
+}
+
+<div class="profile-area ">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 rounded-bottom ">
+                <div class="card-profile  rounded-bottom  " style="height:600px;">
+
+                    <div class="img1 bg-light  "><img src="/Images/TL.png" /></div>
+
+
+                    @if (Model.ProfileImage == null) // change ProfileImage to string not byte [] sooon
+                    {
+                        <div class=" img2 offset-6 mt-5">
+                            <a href="#">
+                                <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class=" img2 offset-6 mt-5">
+                            <a href="#">
+                                @if (Model.Stars != null)
+                                {
+                                    <img src="~/Hotels/@Model.Id/@Model.ProfileImage" />
+                                }
+                                else
+                                {
+                                    <img src="~/Companies/@Model.Id/@Model.ProfileImage" />
+                                }
+
+
+                            </a>
+                        </div>
+                    }
+
+
+
+                    <div class="img-icon1   ">
+                        <div class="img-icon1 offset-5 fs-3   "><a href="" title="Change" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-camera-fill bg-white p-1 "></i></></a></div>
+                    </div>
+                    @if (Model.Stars != null) // this hotel and have stars
+                    {
+                        <div class="offset-8 p-3   ">
+                            <!--loop-->
+                            <h5 class="start0">  <i class="bi bi-star-fill fs-4  text-light"></i></h5>
+                            @for (int i = 1; i < Model.Stars; i++)
+                            {
+                                <h5 class='@($"start{i}")'> <i class="bi bi-star-fill fs-4  text-light"></i></h5>
+                            }
+
+                            @if (Model.Stars.Value < 7)
+                            {
+                                @for (int i = Model.Stars.Value; i < 7; i++)
+                                {
+                                    <h5 class='@($"start{i}")'>  <i class="bi bi-star-fill fs-4  "></i></h5>
+                                }
+                            }
+
+                        </div>
+                    }
+
+                    <div class="offset-5 mt-5  here ">
+                        <h1 class="fw-bold text-light">@Model.EnterpriseName</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 ">
+                <div class="col-md-12   mt-2">
+                    <div class="card rounded-bottom" style="height:295px;">
+                        <div class="card-header">
+                            <div>
+                                <a href="" title="Change" data-bs-toggle="modal" data-bs-target="#descrption">
+                                    <h4><i class="bi bi-pencil rounded-circle  p-1 btn-outline-secondary text-white "></i></h4>
+                                </a>
+                                <h2 class="offset-8 fw-bold text-light"> </h2>
+                            </div>
+                        </div>
+                        <div class="card-body text-white">
+
+
+                            @Model.Description
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-12   mt-2">
+                        <div class="card rounded-bottom">
+                            <div class="card-header row">
+                                <div class="col-md-4">
+                                    <h2 class="text-light"><i class="bi bi-chat-square-heart rounded-circle  p-1 btn-outline-secondary text-primary fw-bold  "></i> Comments</h2>
+                                </div>
+                                <div class="col-md-4 offset-3 w-25">
+                                    <div class="d-grid gap-2   ">
+                                        <a asp-action="ViewComments" asp-route-Id="@Model.Id" class="btn btn-outline-light btn-primary btn-lg  fw-bold    ">Show more </a>
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach (var Comment in Model.ViewComments)
+                            {
+                                <div class="col-md-12  mt-2">
+                                    <div class="card rounded rounded-5 rounded-bottom-5">
+
+                                        <div class="card-body text-white   ">
+                                            <div class=" comment mt-2 ">
+                                                <div class="row">
+                                                    <h4 class="text-light fw-bold col-6"> <i class="bi bi-person-circle text-primary fs-2 m-2"></i> @Comment.UserName </h4>
+                                                    <p class="text-black  fw-bold profile-email col-4 mt-3"><i class="bi bi-envelope-at-fill text-black"></i>   @Comment.Email</p>
+                                                </div>
+                                                <p class="text-white fw-bold profile-email">  <i class="bi bi-arrow-return-right  text-black fw-bold fs-3 p-2"></i>  @Comment.Content</p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-0  mt-2 ">
+                <div class="card rounded-bottom">
+                    <div class="card-body">
+                        <div class="offset-1">
+
+                            <a href="#">
+                                <h5> <i class="bi bi-geo-alt-fill"></i></h5>
+                            </a>
+                            <p class="offset-1 text-light">
+                                <a href="" title="Change" data-bs-toggle="modal" data-bs-target="#Location" class="link-underline link-underline-opacity-0">
+                                    <i class="bi bi-pencil rounded-circle  p-1 btn-outline-secondary text-white  fw-bold fs-5"></i>
+                                </a>
+                                @Model.Location <br />
+                                <i class="bi bi-house-door-fill text-primary fs-5"></i>    <span class="fs-5 fw-bold">@Model.City</span>
+
+                            </p>
+
+                            <a href="#">  <h5><i class="bi bi-telephone-fill"></i></h5></a><p class="offset-1 text-light">Phone: @Model.PhoneNumber</p>
+                            <a href="#"><h5><i class="bi bi-envelope-fill"></i></h5></a><p class="offset-1 text-light">@Model.Email</p>
+                        </div>
+                        <div class="row offset-4">
+
+                            <h4 class="text-primary col-6  ">@Model.RateResult  </h4>
+                            <div class="col-4 m-0 p-0 "> <span class="text-white fw-bold fs-4 bg-primary rate   ">@Model.Rate</span></div>
+                            <span class="text-light review">@Model.Reviews reviews</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:130px">
+    <div class="modal-dialog   ">
+        <div class="modal-content bg-black ">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-bold" id="exampleModalLabel"> Change Your Profile Image </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="profileImageForm" enctype="multipart/form-data" asp-action="ChangeProfileImage">
+                    <input hidden asp-for="Id" />
+                    <input hidden asp-for="ProfileImage" />
+                    @if (Model.ProfileImage == null)
+                    {
+                        <div class=" text-center">
+                            <img src="/Images/WhatsApp Image 2024-01-15 at 22.35.16_597eb9b1.jpg" class="rounded-circle border border-4" style="width:250px;height:250px;" id="photoPreview" />
+                        </div>
+                    }
+                    else
+                    {
+                        @if (Model.Stars != null)
+                        {
+                            <div class=" text-center">
+                                <img src="~/Hotels/@Model.Id/@Model.ProfileImage" class="rounded-circle border border-4" style="width:250px;height:250px;" id="photoPreview" />
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class=" text-center">
+                                <img src="~/Companies/@Model.Id/@Model.ProfileImage" class="rounded-circle border border-4" style="width:250px;height:250px;" id="photoPreview" />
+                            </div>
+                        }
+                    }
+
+                    <div class="row mt-5 ">
+                        <div class="col-8">
+
+                            <input asp-for="ImageToChaneg" type="file" class="form-control fw-bold fs-5 text-primary" id="Input_ProfileImage" onchange="previewImage(event)" />
+
+                            <span asp-validation-for="ImageToChaneg"></span>
+                        </div>
+                        <div class="col-4  ">
+                            <button type="submit" class="btn btn-outline-primary fw-bold fs-5 w-100">Save </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade  " id="descrption" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:130px">
+    <div class="modal-dialog   ">
+        <div class="modal-content bg-black ">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-bold" id="exampleModalLabel"> Change Your  Dscrption </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="profileImageForm1" asp-action="ChangeDescription">
+                    <input hidden asp-for="Id" />
+                    <div class="">
+
+
+                        <div class="form-floating ">
+                            <textarea asp-for="Description" class="form-control fw-bold  " cols="20" rows="10" placeholder="Leave a comment here"></textarea>
+                            <label class="text-primary fw-bold fs-6 fst-italic"> Description</label>
+                            <span asp-validation-for="Description">  </span>
+                        </div>
+
+
+                    </div>
+                    <div class="row mt-5 ">
+
+                        <div class="col-4 offset-4 ">
+                            <button type="submit" class="btn btn-outline-primary fw-bold fs-5 w-100">Save </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade  " id="Location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:130px">
+    <div class="modal-dialog   ">
+        <div class="modal-content bg-black ">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4 fw-bold" id="exampleModalLabel"> Change Your  Location </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="profileImageForm1" asp-action="ChangeLocation">
+
+                    <input hidden asp-for="Id" />
+                    <div class="">
+
+
+                        <div class="form-floating ">
+                            <textarea asp-for="Location" class="form-control fw-bold  " cols="20" rows="10" placeholder="Leave a comment here"></textarea>
+                            <label class="text-primary fw-bold fs-6 fst-italic"> Location</label>
+                            <span asp-validation-for="Location"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="row mt-5 ">
+
+                        <div class="col-4 offset-4 ">
+                            <button type="submit" class="btn btn-outline-primary fw-bold fs-5 w-100">Save </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <partial name="_validationscriptspartial" />
+}
